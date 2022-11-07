@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Auth::routes();
@@ -30,3 +31,7 @@ Route::get('/admin/profile',[ProfileController::class,'profile'])->name('profile
 Route::post('/admin/profile/namechange',[ProfileController::class,'namechange'])->name('profile.namechange');
 Route::post('/admin/profile/passwordchange',[ProfileController::class,'passwordchange'])->name('profile.passwordchange');
 Route::post('/admin/profile/photochange',[ProfileController::class,'photochange'])->name('profile.photochange');
+
+
+// categroy
+Route::resource('category',CategoryController::class);

@@ -67,6 +67,14 @@
                             </li>
                             @if (Auth::user()->role==2)
                             <li>
+                                <a href="javascript: void(0);"><i class="fi-bar-graph-2"></i><span> Category</span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('category.create') }}">Add Category</a></li>
+                                    <li><a href="chart-flot.html">List Category</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
                                 <a href="{{ route('email.offer') }}">
                                     <i class="fi-command"></i> <span> Email Offer</span>
                                 </a>
