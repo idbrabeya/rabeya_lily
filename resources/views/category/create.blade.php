@@ -21,14 +21,22 @@
                             <div class="mb-3 form-group">
                               <label for="" class="form-label">Category Name</label>
                               <input type="text" class="form-control" placeholder="Category Name" name="category_name">
+
+                                  @error('category_name')
+                                      <span class="text-danger">{{ $message }}</span>
+                                  @enderror
+
                             </div>
                             <div class="mb-3 form-group">
                                 <label for="" class="form-label">Category Tagline</label>
                                 <input type="text" class="form-control" placeholder="Category tagline" name="category_tagline">
+                                @error('category_tagline')
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror
                             </div>
                             <div class="mb-3 form-group">
                                 <label for="" class="form-label">Category Photo</label>
-                                <input type="file" class="form-control" name="photo">
+                                <input type="file" class="form-control" name="category_photo">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Add New Category</button>

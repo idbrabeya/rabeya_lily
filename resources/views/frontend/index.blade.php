@@ -2130,39 +2130,19 @@
     <!-- Banner Area Start -->
     <div class="banner-area pt-100px pb-100px plr-15px">
         <div class="row m-0">
+            @foreach ($category as $categories)
             <div class="col-12 col-lg-4 mb-md-30px mb-lm-30px">
                 <div class="single-banner-2">
-                    <img src="{{asset('frontend')}}/assets/images/banner/4.jpg" alt="">
+                    <img src="{{asset('uploads/category_photos')}}/{{ $categories->category_photo }}" alt="">
                     <div class="item-disc">
-                        <h4 class="title">Best Collection <br>
-                            For Women</h4>
+                        <h4 class="title">{{ $categories->category_tagline }} <br>
+                           {{$categories->category_name}}</h4>
                         <a href="shop-left-sidebar.html" class="shop-link btn btn-primary ">Shop Now <i
                                 class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 center-col mb-md-30px mb-lm-30px">
-                <div class="single-banner-2">
-                    <img src="{{asset('frontend')}}/assets/images/banner/5.jpg" alt="">
-                    <div class="item-disc">
-                        <h4 class="title">Best Collection <br>
-                            For Men</h4>
-                        <a href="shop-left-sidebar.html" class="shop-link btn btn-primary">Shop Now <i
-                                class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="single-banner-2">
-                    <img src="{{asset('frontend')}}/assets/images/banner/6.jpg" alt="">
-                    <div class="item-disc">
-                        <h4 class="title">New Collection <br>
-                            For Kids</h4>
-                        <a href="shop-left-sidebar.html" class="shop-link btn btn-primary">Shop Now <i
-                                class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- Banner Area End -->

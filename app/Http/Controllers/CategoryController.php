@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Image;
+use Auth;
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -34,7 +39,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $request->validate([
+            '*'=>'required',
+        ]);
+
+        // category_photo_upload start
+        $category_photo= Auth::id().'-'.time().'-'.Str::random(4).'.'. $request->file('category_photo')->getClientOriginalExtension();
+        Image::make($request->file('category_photo'))->resize(600,328)->save(base_path('public/uploads/category_photos/'.$category_photo));
+        //  category_photo_upload end
+
+        // db insert start
+        Category::insert([
+                'category_name'=>$request->category_name,
+                'category_tagline'=>$request->category_tagline,
+                'category_photo'=>$category_photo,
+                'created_at'=>Carbon::now(),
+        ]);
+        return back();
     }
 
     /**
