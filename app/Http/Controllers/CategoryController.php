@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Image;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class CategoryController extends Controller
@@ -18,7 +18,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('category.index',[
+            'category'=>Category::all(),
+        ]);
+
     }
 
     /**
@@ -40,7 +43,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            '*'=>'required',
+            'category_name'=>'required',
+            'category_tagline'=>'required',
+            'category_photo'=>'required|image',
         ]);
 
         // category_photo_upload start
@@ -70,14 +75,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        ;
+        return view('category.edit',[
+            'category_edit'=>Category::find($id),
+        ]);
     }
 
     /**
@@ -89,7 +96,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('new_category_photo')) {
+            $new_category_photo= Auth::id().'-'.time().'-'.Str::random(4).'.'. $request->file('new_category_photo')->getClientOriginalExtension();
+            // delete old photo
+            // Unlink(base_path('public/uploads/category_photos/'.Category::find($id)->category_photo));
+            unlink( base_path('public/uploads/category_photos/'.Category::find($id)->category_photo));
+            // upload new photo
+            Image::make($request->file('new_category_photo'))->resize(600,328)->save(base_path('public/uploads/category_photos/'.$new_category_photo));
+            //    update to database
+            Category::find($id)->update([
+                'category_photo'=> $new_category_photo,
+            ]);
+        }
+          Category::find($id)->update([
+              'category_name'=>$request->category_name,
+              'category_tagline'=>$request->category_tagline,
+          ]);
+          return back();
     }
 
     /**
@@ -100,6 +123,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $category= Category::find($id);
+          unlink( base_path('public/uploads/category_photos/'. $category->category_photo));
+          $category->delete();
+          return back();
     }
 }
