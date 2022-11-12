@@ -19,6 +19,13 @@
                         <form action="{{ route('category.update',$category_edit->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf @method('PATCH')
                             <div class="mb-3 form-group">
+                                <label for="" class="form-label">Category Status</label>
+                                <select name="status" id="" class="form-control">
+                                    <option value="show" {{ ($category_edit->status=='show')?'selected':'' }}>Show</option>
+                                    <option value="hide" {{ ($category_edit->status=='hide')?'selected':'' }}>Hide</option>
+                                </select>
+                              </div>
+                            <div class="mb-3 form-group">
                               <label for="" class="form-label">Category Name</label>
                               <input type="text" class="form-control" placeholder="Category Name" name="category_name" value="{{ $category_edit->category_name }}">
 

@@ -21,6 +21,7 @@
                            <thead>
                                <tr>
                                    <th>Category Name</th>
+                                   <th>Category Status</th>
                                    <th>Category Tagline</th>
                                    <th>Category Photo</th>
                                    <th>Action</th>
@@ -30,6 +31,7 @@
                                @foreach ($category as $categories)
                                <tr>
                                 <td>{{ $categories->category_name }}</td>
+                                <td>{{ $categories->status }}</td>
                                 <td>{{ $categories->category_tagline }}</td>
                                 <td>
                                     <img width="130" src="{{ asset('uploads/category_photos') }}/{{ $categories->category_photo }}" alt="Not Found">
@@ -37,7 +39,7 @@
                                 <td>
                                     <a href="{{ route('category.edit',$categories->id) }}" class="btn btn-info btn-sm ">Eidt</a>
                                     <br>
-                                    <a href="{{ route('category.edit',$categories->id) }}" class="btn btn-warning btn-sm mt-2">Show</a>
+                                    <a href="{{ route('category.show',$categories->id) }}" class="btn btn-warning btn-sm mt-2">Show</a>
                                     <form class="mt-2" action="{{ route('category.destroy',$categories->id) }}" method="POST">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-danger btn-sm">Delete</button>

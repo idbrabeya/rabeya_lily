@@ -12,7 +12,7 @@
         <div class="form-group m-b-20 row">
             <div class="col-12">
                 <label for="emailaddress">Email address</label>
-                <input class="form-control" type="email" id="emailaddress" name="email" placeholder="Enter your email">
+                <input class="form-control" type="email" id="emailaddress" name="email" placeholder="rabeya@livegmail.com" value="rabeya@live.com">
 
                 @error('email')
                 <span class="text-danger">{{ $message }}</span>
@@ -23,7 +23,7 @@
         <div class="form-group row m-b-20">
             <div class="col-12">
                 <label for="password">Password</label>
-                <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password">
+                <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password" value="12345678">
                 @error('password')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror

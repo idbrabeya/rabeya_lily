@@ -71,7 +71,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return view('category.show',[
+            'category_show'=> Category::find($id)
+        ]);
     }
 
     /**
@@ -111,6 +114,7 @@ class CategoryController extends Controller
           Category::find($id)->update([
               'category_name'=>$request->category_name,
               'category_tagline'=>$request->category_tagline,
+              'status'=>$request->status,
           ]);
           return back();
     }

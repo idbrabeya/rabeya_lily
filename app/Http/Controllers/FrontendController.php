@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
     public function index(){
+         if(Category::where('status','show')->count()==0){
+            $category=Category::latest()->limit(3)->get();
 
-        return view('frontend.index',[
-            'category'=>Category::all(),
-        ]);
+         }else{
+            $category=Category::where('status','show')->get();
+         }
+        return view('frontend.index',compact('category'));
     }
 }
