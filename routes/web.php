@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -18,6 +20,8 @@ Auth::routes();
 
 
 Route::get('/',[FrontendController::class,'index'])->name('frontend.index');
+Route::get('/product/details/{slug}',[FrontendController::class,'product_details'])->name('product.details');
+Route::get('/category/{category_id}',[FrontendController::class,'categorywiseproducts'])->name('categorywise.products');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -32,5 +36,7 @@ Route::post('/admin/profile/passwordchange',[ProfileController::class,'passwordc
 Route::post('/admin/profile/photochange',[ProfileController::class,'photochange'])->name('profile.photochange');
 
 
-// categroy
+// categroy ,vendor,product
 Route::resource('category',CategoryController::class);
+Route::resource('vendor',VendorController::class);
+Route::resource('product',ProductController::class);

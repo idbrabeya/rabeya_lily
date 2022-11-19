@@ -14,33 +14,33 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                      Category List
+                      Product List
                     </div>
                     <div class="card-body">
                        <table class="table table-bordered">
                            <thead>
                                <tr>
-                                   <th>Category Name</th>
-                                   <th>Category Status</th>
-                                   <th>Category Tagline</th>
-                                   <th>Category Photo</th>
+                                   <th>Product Name</th>
+                                   <th>Product Price</th>
+                                   <th>Product Short Description</th>
                                    <th>Action</th>
+
                                </tr>
                            </thead>
                            <tbody>
-                               @forelse ($category as $categories)
+                               @forelse ($all_product as $all_products)
                                <tr>
-                                <td>{{ $categories->category_name }}</td>
-                                <td>{{ $categories->status }}</td>
-                                <td>{{ $categories->category_tagline }}</td>
-                                <td>
+                                <td>{{ $all_products->product_name}}</td>
+                                <td>{{ $all_products->product_price }}</td>
+                                <td>{{ $all_products->short_description }}</td>
+                                {{-- <td>
                                     <img width="130" src="{{ asset('uploads/category_photos') }}/{{ $categories->category_photo }}" alt="Not Found">
-                                </td>
+                                </td> --}}
                                 <td>
-                                    <a href="{{ route('category.edit',$categories->id) }}" class="btn btn-info btn-sm ">Eidt</a>
+                                    <a href="" class="btn btn-info btn-sm ">Eidt</a>
                                     <br>
-                                    <a href="{{ route('category.show',$categories->id) }}" class="btn btn-warning btn-sm mt-2">Show</a>
-                                    <form class="mt-2" action="{{ route('category.destroy',$categories->id) }}" method="POST">
+                                    <a href="" class="btn btn-warning btn-sm mt-2">Show</a>
+                                    <form class="mt-2" action="" method="POST">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-danger btn-sm">Delete</button>
                                     </form>
